@@ -10,7 +10,7 @@ The best place to get help is our Spectrum channel, [spectrum.chat/jseverywhere]
 
 ## Directory Structure
 
-- `/src` If you are following along with the book, this is the directory where you should perform your development.
+- `/src` слегка измененная конфигурация json, изменения кода - русские заголовки и показ названия статей перед их просмотром .
 - `/solutions` This directory contains the solutions for each chapter. If you get stuck, these are available for you to consult.
 - `/final` This directory contains the final working project
 
