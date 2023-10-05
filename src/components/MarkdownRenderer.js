@@ -8,7 +8,7 @@ const MarkdownRenderer = ({ markdownContent }) => {
         src={src}
         alt={alt}
         title={title}
-        style={{ width: '200px', height: '300px' }}
+        style={{ float: 'left', marginRight: '10px', width: '200px', height: '400px' }}
       />
     ),
   };
