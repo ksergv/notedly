@@ -52,12 +52,12 @@ const Header = props => {
               props.history.push('/');
             }}
           >
-            Logout
+            Выйти
           </ButtonAsLink>
         ) : (
           <p>
-            <Link to={'/signin'}>Sign In</Link> or{' '}
-            <Link to={'/signup'}>Sign Up</Link>
+            <Link to={'/signin'}>Войти</Link> или{' '}
+            <Link to={'/signup'}>Зарегистрироваться</Link>
           </p>
         )}
       </UserState>
