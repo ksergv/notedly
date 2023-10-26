@@ -70,7 +70,7 @@ const Note = ({ note }) => {
           />
         </MetaInfo>
         <MetaInfo>
-        <b> {extractedWord}</b> <em>by</em> {note.author.username} <br />
+        <b> {extractedWord}</b> <em>by</em> {note.author.username} <br /> 
           {format(note.createdAt, 'MMM Do YYYY')}
         </MetaInfo>
         {data.isLoggedIn ? (

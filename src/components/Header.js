@@ -6,6 +6,9 @@ import { Link } from 'react-router-dom';
 
 import ButtonAsLink from './ButtonAsLink';
 import { IS_LOGGED_IN } from '../gql/query';
+import { useHistory } from 'react-router-dom'; // Импортируйте useHistory
+
+
 
 const HeaderBar = styled.header`
   width: 100%;
@@ -32,6 +35,8 @@ const UserState = styled.div`
 const Header = props => {
   // query hook for user logged in state
   const { data, client } = useQuery(IS_LOGGED_IN);
+  const history = useHistory(); // Используйте useHistory из react-router-dom
+
 
   return (
     <HeaderBar>
@@ -49,7 +54,7 @@ const Header = props => {
               // update local state
               client.writeData({ data: { isLoggedIn: false } });
               // redirect the user to the homepage
-              props.history.push('/');
+              history.push('/');
             }}
           >
             Выйти

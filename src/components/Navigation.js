@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import styled from 'styled-components';
 
@@ -18,11 +18,16 @@ const Nav = styled.nav`
   }
 `;
 
+const Span=styled.span`
+margin-right: 10px;
+`;
+
 const NavList = styled.ul`
   margin: 0;
   padding: 0;
   list-style: none;
   line-height: 2;
+  
 
   /* We can nest styles in styled-components */
   /* The following styles will apply to links within the NavList component */
@@ -44,27 +49,52 @@ const NavList = styled.ul`
 `;
 
 const Navigation = () => {
+
+  const [category, setCategory] = useState('All'); // Состояние для выбора категории
+
+  const handleCategoryChange = (event) => {
+    setCategory(event.target.value);
+  };
+
   return (
     <Nav>
       <NavList>
-        <li>
-          <Link to="/">
+      <li>
+      <Link to={`/`}>
+         <span aria-hidden="true" role="img">
+            📌
+          </span> 
+          <span style ={{fontWeight:'bold', fontSize: "1.1em", color: "#333"}} >Help! </span> 
+          <select value={category} onChange={handleCategoryChange}>
+            <option value="Health"> Здоровье</option>
+            <option value="Develop"> Развитие</option>
+            {/* Добавьте другие категории по аналогии */}
+            <option value="Youtube">Youtube</option>
+            <option value="Magic">Магия</option>
+            <option value="Tsigin">Цигун</option>
+            <option value="All"> Разное!</option>
+          </select>
+          </Link>
+          </li>
+          <li>
+          <Link to={`/category/${category}`}>
             <span aria-hidden="true" role="img">
               🏠
             </span>
-            Домой
+            Общие
           </Link>
+          
         </li>
         <li>
-          <Link to="/mynotes">
+          <Link to={`/mynotes/category/${category}`}>
             <span aria-hidden="true" role="img">
               📓
             </span>
-            Мои заметки
+            Приватные
           </Link>
         </li>
         <li>
-          <Link to="/favorites">
+          <Link to={`/favorites/category/${category}`}>
             <span aria-hidden="true" role="img">
               🌟
             </span>

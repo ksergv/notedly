@@ -2,11 +2,13 @@ import React from 'react';
 import ReactMarkdown from 'react-markdown';
 import { format } from 'date-fns';
 import styled from 'styled-components';
-import { useQuery } from '@apollo/client';
+import {  useQuery } from '@apollo/client';
 import MarkdownRenderer from './MarkdownRenderer';
 
 import NoteUser from './NoteUser';
+import GetUser from './GetUser';
 import { IS_LOGGED_IN } from '../gql/query';
+
 
 
 
@@ -35,13 +37,19 @@ const UserActions = styled.div`
 `;
 
 
+
 const FullNote = ({ note }) => {
+  
+  var isPrivateAuthor = GetUser({ note: note });
+ 
+
   const { loading, error, data } = useQuery(IS_LOGGED_IN);
   // if the data is loading, display a loading message
   if (loading) return <p>Loading...</p>;
   // if there is an error fetching the data, display an error message
   if (error) return <p>Error!</p>;
 
+  
 
   return (
     <StyledNote>
@@ -67,8 +75,32 @@ const FullNote = ({ note }) => {
           </UserActions>
         )}
       </MetaData>
-      <MarkdownRenderer markdownContent={note.content} />
-     
+
+      {(data.isLoggedIn ) &&<GetUser note={note} />}  
+
+     {(!data.isLoggedIn ) && (isPrivateAuthor = false)}
+      
+      {console.log("isPrivate="+note.private)}
+      {console.log("isPrivateAuthor="+isPrivateAuthor)}
+
+  {(data.isLoggedIn ) ?    
+  (     
+    (!note.private || isPrivateAuthor) ?
+      (<MarkdownRenderer  markdownContent = {note.content} />
+      ) : ( 
+        <MarkdownRenderer markdownContent = {'### Вы пытаетесь читать приватную заметку!!!'} />
+       )
+    ) : (
+  (!note.private || isPrivateAuthor) ?
+  (<MarkdownRenderer  markdownContent = {note.content} />
+      ) : ( 
+   <MarkdownRenderer markdownContent = {'### Вы пытаетесь читать приватную заметку!!!'} />
+  )
+  )}
+
+
+ 
+
     </StyledNote>
   );
 };

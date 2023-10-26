@@ -7,6 +7,8 @@ const GET_NOTES = gql`
       hasNextPage
       notes {
         id
+        private
+        category
         createdAt
         content
         favoriteCount
@@ -24,6 +26,8 @@ const GET_NOTE = gql`
   query note($id: ID!) {
     note(id: $id) {
       id
+      private
+      category
       createdAt
       content
       favoriteCount
@@ -43,6 +47,8 @@ const GET_MY_NOTES = gql`
       username
       notes {
         id
+        private
+        category
         createdAt
         content
         favoriteCount
@@ -63,6 +69,8 @@ const GET_MY_FAVORITES = gql`
       username
       favorites {
         id
+        private
+        category
         createdAt
         content
         favoriteCount

@@ -7,6 +7,7 @@ import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import Layout from '../components/Layout';
 
 // import our routes
+import Help from './help';
 import Home from './home';
 import MyNotes from './mynotes';
 import Favorites from './favorites';
@@ -28,10 +29,13 @@ const Pages = () => {
   return (
     <Router>
       <Layout>
-        <Route exact path="/" component={Home} />
-        <PrivateRoute path="/mynotes" component={MyNotes} />
-        <PrivateRoute path="/favorites" component={Favorites} />
+        <Route exact path="/" component={Help} />
+        <Route exact path="/category/:Category" component={Home} />
+        <PrivateRoute path="/mynotes/category/:Category" component={MyNotes} />
+        <PrivateRoute path="/favorites/category/:Category" component={Favorites} />
         <Route path="/note/:id" component={Note} />
+        <Route path="/category/note/:id" component={Note} />
+        <Route path="/mynotes/category/note/:id" component={Note} />
         <Route path="/fullnote/:id" component={FullNote} />
         <Route path="/signup" component={SignUp} />
         <Route path="/signin" component={SignIn} />
