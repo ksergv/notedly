@@ -13,14 +13,10 @@ const NoteWrapper = styled.div`
 import Note from './Note';
 
 const NoteFeedMe = ({ notes }) => {
-  const Privat = (notes)=>{
-   return notes.filter(item => item.private !== false)
-  }
-  const filteredNotes = Privat(notes); // Сохраните отфильтрованный массив в новой переменной
-
+  
   return (
     <div className="note-feed">
-      {filteredNotes.map(note => (
+      {notes.map(note => (
         <NoteWrapper key={note.id}>
           <Note note={note} />
           <Link to={`/note/${note.id}`}>Посмотреть!</Link>

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useQuery } from '@apollo/client';
 
-import NoteFeedMe from '../components/NoteFeedMe';
+import NoteFeedAll from '../components/NoteFeedAll';
 import { GET_MY_FAVORITES } from '../gql/query';
 
 const Favorites = () => {
@@ -19,7 +19,7 @@ const Favorites = () => {
   // if the query is successful and there are notes, return the feed of notes
   // else if the query is successful and there aren't notes, display a message
   if (data.me.favorites.length !== 0) {
-    return <NoteFeedMe notes={data.me.favorites} />;
+    return <NoteFeedAll notes={data.me.favorites} />;
   } else {
     return <p>No favorites yet</p>;
   }

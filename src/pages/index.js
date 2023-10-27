@@ -32,7 +32,8 @@ const Pages = () => {
         <Route exact path="/" component={Help} />
         <Route exact path="/category/:Category" component={Home} />
         <PrivateRoute path="/mynotes/category/:Category" component={MyNotes} />
-        <PrivateRoute path="/favorites/category/:Category" component={Favorites} />
+        <Route path="/favorites" component={Favorites} />
+        <Route path="/favorites/category/note/:id" component={Note} />
         <Route path="/note/:id" component={Note} />
         <Route path="/category/note/:id" component={Note} />
         <Route path="/mynotes/category/note/:id" component={Note} />
